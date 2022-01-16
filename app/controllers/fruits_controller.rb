@@ -1,6 +1,6 @@
 class FruitsController < ApplicationController
   def index
-    render json: [{ name: 'りんご' }, { name: 'みかん' }]
+    render json: { fruits: [{ name: 'りんご' }, { name: 'みかん' }]}
   end
 
   def create

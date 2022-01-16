@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: Rails API with committee
+  description: committee を使ったRails APIです
+  version: 0.0.1
+servers:
+  - url: http://localhost:7401
+    description: development
+tags:
+  - name: fruits
+    description: 果物
+components:
+  schemas:
+    Fruits:
+      type: object
+      properties:
+        fruits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fruit'
+    Fruit:
+      type: object
+      properties:
+        name:
+          description: 名前
+          type: string
+          example: りんご
+paths:
+  /fruits:
+    get:
+      summary: 果物一覧
+      tags:
+        - fruit
+      responses:
+        '200':
+          description: 取得成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fruits'
+    post:
+      summary: 果物の登録
+      tags:
+        - fruit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Fruit'
+        required: true
+      responses:
+        '201':
+          description: 登録成功
